@@ -1,0 +1,10 @@
+.comment {
+    height: 80px !important;
+    overflow: auto;
+    color: rgb(56, 56, 56);
+    width: 800px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+
+/* .messages {} */

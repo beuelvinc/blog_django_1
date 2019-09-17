@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+<br>
+     <div class="nav justify-content-center">
+        <form class="form-inline my-2 my-lg-0 " method="get">
+        <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search Article" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+<div class="container">
+<br>
+
+ 
+ <div class="jumbotron">
+    <h1 class="text-center">Home page</h1>
+    </div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible" role="alert" {% endif %}> {{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<br>
+{% for obj in context  %}
+    <div class="card">
+        <div class="card-body">
+        <h3>{{obj.title}} <small> created by {{obj.author}} </small></h3> 
+        <p>{{obj.content|truncatewords:5}}</p>
+        <small>{{obj.date}}</small>
+        <br>
+        <a class='btn btn-outline-info' href="{% url 'detail_page' obj.id %}">Read more</a> 
+        </div>
+    </div>
+{% endfor %}
+<br>
+ {% if is_paginated %}
+<ul class="pagination">
+{% if page_obj.has_previous %}
+    <li>
+        <span><a  class='btn btn-success' href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+    </li>
+{% endif %}
+
+    <li class="">
+        <span style='display:flex;'>&nbsp;Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.&nbsp;</span>
+    </li>
+    {% if page_obj.has_next %}
+    <li>
+        <span><a  class='btn btn-success' href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }} &nbsp;  </a>&nbsp;&nbsp;</span>
+    </li>
+    
+{% endif %}
+{% if page_obj.has_next %}
+    <li>
+        <span><a class='btn btn-success' href="?page={{ page_obj.next_page_number }}">Next</a></span>
+    </li>
+{% endif %}
+</ul>
+{% endif %}
+</div>
+</div>
+<br><br>
+{% endblock content %}

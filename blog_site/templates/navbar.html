@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home_page' %}">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item {% if request.resolver_match.url_name == 'home_page' %}active{% endif %} ">
+        <a class="nav-link" href="{% url 'home_page' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'about_page' %}active{% endif %} ">
+        <a class="nav-link" href="{% url 'about_page' %}">About</a>
+      </li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'contact_page' %}active{% endif %} ">
+        <a class="nav-link" href="{% url 'contact_page' %}">Contact</a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'create_page' %}active{% endif %} ">
+        <a class="nav-link" href="{% url 'create_page' %}">Create Post</a>
+      </li>
+    
+    </ul>
+  </div>
+  
+
+  <div class="justify-content-right">
+   <ul class="navbar-nav">
+{%   if user.is_authenticated %}  
+
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_change_password' %}">Change Password</a>
+    </li>
+ <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+    </li>
+{% else %}
+   
+
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_reset_password' %}">Reset Password</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+    </li>
+  {% endif %}
+  </ul>
+  </div>
+</nav>

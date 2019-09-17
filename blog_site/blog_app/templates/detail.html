@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+<br>
+<h1>Home page</h1>
+<br>
+
+    <div class="card">
+    <div class="card-body">
+        <h3>{{object.title}}</h3> 
+        <p>{{object.content}}</p>
+        <small>{{object.date}}</small>
+    </div>
+
+    <div class="container comment card">
+            {% for ac in all_comments %}
+            <div class="btn btn-primary">
+                <small>commented by <h3>{{ac.author}}</h3></small>
+                <p> <small> comment</small> : {{ac.text}}</p>
+            </div>
+            {% empty %}
+            <p class='btn btn-outline-danger'>No commets yet</p>
+            {% endfor %}
+        <br><br>
+    </div>
+    <div class="container">
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{comment|crispy}}
+        <input type="submit" class='btn btn-info' value="Share comment">
+        </form>
+    </div>
+        <br><br>
+
+        
+    </div>
+    <a  class='btn btn-danger' href="{% url 'delete_page' object.id %}">Delete</a>
+    <a  class='btn btn-primary' href="{% url 'update_page' object.id %}">update</a>
+    
+</div><br>
+<br>
+<br>
+<br>
+{% endblock content %}
