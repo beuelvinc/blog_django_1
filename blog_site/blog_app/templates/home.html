@@ -5,64 +5,189 @@ Home
 {% endblock title %}
 {% block content %}
 <br>
-     <div class="nav justify-content-center">
-        <form class="form-inline my-2 my-lg-0 " method="get">
-        <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search Article" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-<div class="container">
-<br>
+  <section class="home-slider owl-carousel">
+        <div class="slider-item">
+            <div class="container">
+                <div class="row d-flex slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
- 
- <div class="jumbotron">
-    <h1 class="text-center">Home page</h1>
-    </div>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible" role="alert" {% endif %}> {{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-<br>
-{% for obj in context  %}
-    <div class="card">
-        <div class="card-body">
-        <h3>{{obj.title}} <small> created by {{obj.author}} </small></h3> 
-        <p>{{obj.content|truncatewords:5}}</p>
-        <small>{{obj.date}}</small>
-        <br>
-        <a class='btn btn-outline-info' href="{% url 'detail_page' obj.id %}">Read more</a> 
+                    <div class="img" style="background-image: url({% static 'images/bg_1.jpg' %});"></div>
+
+                    <div class="text d-flex align-items-center  ">
+                        <div class="text-2 pb-lg-5 mb-lg-4 px-4 px-md-5">
+                            <h3 class="subheading mb-3">Featured Posts</h3>
+                            <h1 class="mb-5">Love the Delicious &amp; Tasty Foods</h1>
+                            <p class="mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia</p>
+                            <p><a href="#" class="btn btn-black px-3 px-md-4 py-3">Read More <span
+                                class="icon-arrow_forward ml-lg-4"></span></a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-{% endfor %}
-<br>
- {% if is_paginated %}
-<ul class="pagination">
-{% if page_obj.has_previous %}
-    <li>
-        <span><a  class='btn btn-success' href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
-    </li>
-{% endif %}
 
-    <li class="">
-        <span style='display:flex;'>&nbsp;Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.&nbsp;</span>
-    </li>
-    {% if page_obj.has_next %}
-    <li>
-        <span><a  class='btn btn-success' href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }} &nbsp;  </a>&nbsp;&nbsp;</span>
-    </li>
+        <div class="slider-item">
+            <div class="container">
+                <div class="row d-flex slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="img "  style="background-image: url({% static 'images/bg_2.jpg' %});"></div>
+
+                    <div class="text d-flex align-items-center  ">
+                        <div class="text-2 pb-lg-5 mb-lg-4 px-4 px-md-5">
+                            <h3 class="subheading mb-3">Featured Posts</h3>
+                            <h1 class="mb-5">I am A Blogger &amp; I Love Foods</h1>
+                            <p class="mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia</p>
+                            <p><a href="#" class="btn btn-black px-3 px-md-4 py-3">Read More <span
+                                class="icon-arrow_forward ml-lg-4"></span></a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        
+
+    <section class="ftco-section ftco-no-pt">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-12 heading-section   fadeInup">
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible" role="alert" {% endif %}> {{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                            <h2 class="mb-4"><span>My Posts</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                    {% for obj in context  %}
+
+                        <div class="col-md-4   fadeInup">
+                            <div class="blog-entry">
+                                <a href="{% url 'detail_page' obj.id %}" class="img-2"><img src="{% static 'images/blog-1.jpg' %}" class="img-fluid" alt="Colorlib Template"></a>
+                                <div class="text pt-3">
+                                    <p class="meta d-flex"><span class="pr-3">{{obj.title}}</span><span class="ml-auto pl-3">{{obj.date}}</span>
+                                    </p>
+                                    <h3><p href="#">created by {{obj.author}}</p></h3>
+                                    <p class="mb-0"><a href="{% url 'detail_page' obj.id %}" class="btn btn-black py-2">Read More <span
+                                        class="icon-arrow_forward ml-4"></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                     {% endfor %}
+                     
+                      
+                    </div>
+{% if is_paginated %}
+    <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <span><a  class='btn btn-success' href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                </li>
+            {% endif %}
+
+            <li class="">
+                <span style='display:flex;'>&nbsp;Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.&nbsp;</span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a  class='btn btn-success' href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }} &nbsp;  </a>&nbsp;&nbsp;</span>
+                </li>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a class='btn btn-success' href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+            {% endif %}
+    </ul>
+{% endif %}
+  
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="sidebar-wrap">
+                        <div class="sidebar-box p-4 about text-center   fadeInup">
+                            <h2 class="heading mb-4">About Me</h2>
+                            <img src="{% static 'images/author.jpg' %}" class="img-fluid" alt="Colorlib Template">
+                            <div class="text pt-4">
+                                <p>Hi! My name is <strong>Cathy Deon</strong>, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
+                                    a large language ocean.</p>
+                            </div>
+                        </div>
+                        <div class="sidebar-box p-4   fadeInup">
+                           <form class="form-inline my-2 my-lg-0 " method="get">
+                                <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search Article" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
     
-{% endif %}
-{% if page_obj.has_next %}
-    <li>
-        <span><a class='btn btn-success' href="?page={{ page_obj.next_page_number }}">Next</a></span>
-    </li>
-{% endif %}
-</ul>
-{% endif %}
-</div>
-</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-counter ftco-section ftco-no-pt ftco-no-pb img" id="section-counter">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-6 d-flex">
+                    <div class="img d-flex align-self-stretch" style="background-image:url({% static 'images/about.jpg' %});"></div>
+                </div>
+                <div class="col-md-6 pl-md-5 py-5">
+                    <div class="row justify-content-start pb-3">
+                        <div class="col-md-12 heading-section   fadeInup">
+                            <h2 class="mb-4">About Stories</h2>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 justify-content-center counter-wrap   fadeInup">
+                            <div class="block-18 text-center py-5 bg-light mb-4">
+                                <div class="text">
+                                    <strong class="number" data-number="10">0</strong>
+                                    <span>Years of Experienced</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 justify-content-center counter-wrap   fadeInup">
+                            <div class="block-18 text-center py-5 bg-light mb-4">
+                                <div class="text">
+                                    <strong class="number" data-number="200">0</strong>
+                                    <span>Foods</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 justify-content-center counter-wrap   fadeInup">
+                            <div class="block-18 text-center py-5 bg-light mb-4">
+                                <div class="text">
+                                    <strong class="number" data-number="300">0</strong>
+                                    <span>Lifestyle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 justify-content-center counter-wrap   fadeInup">
+                            <div class="block-18 text-center py-5 bg-light mb-4">
+                                <div class="text">
+                                    <strong class="number" data-number="40">0</strong>
+                                    <span>Happy Customers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <br><br>
-{% endblock content %}
+
+  
+
+{% endblock content  %}

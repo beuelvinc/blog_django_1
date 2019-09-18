@@ -118,6 +118,7 @@ def contact_page(request):
             try:
                 send_mail(subject, message, from_email, ['elvinc402@gmail.com',])
                 print("sucess")
+
                 messages.success(request, 'Mail sent.')
                 return redirect("home_page")
             except Exception as e:
