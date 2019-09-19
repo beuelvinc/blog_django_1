@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title=models.CharField(max_length=20)
     content=models.TextField()
+    image=models.ImageField(default="default.jpg",upload_to="status_picture")
     date=models.DateTimeField(auto_now=True)
     class Meta:
         ordering=["-date"]

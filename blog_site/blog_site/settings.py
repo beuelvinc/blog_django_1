@@ -29,8 +29,14 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 INSTALLED_APPS = [
+    'jet',
+        'debug_toolbar',
+
+    'jet.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,13 +51,19 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'captcha',
+     'ckeditor',
+    'ckeditor_uploader',
+
+
 ]
+JET_DEFAULT_THEME = 'light-gray'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -130,9 +142,12 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,"static")]
+STATIC_ROOT=os.path.join(BASE_DIR,"production_static")
 
 LOGIN_REDIRECT_URL="/"
 
+MEDIA_URL="media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SITE_ID = 1
@@ -143,3 +158,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'elvinc402@gmail.com'
 EMAIL_HOST_PASSWORD = 'aze12345'
 
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+ 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+ 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}

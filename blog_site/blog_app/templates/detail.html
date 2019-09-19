@@ -19,14 +19,14 @@ Home
 
     <div class="container comment card">
             {% for ac in all_comments %}
-            <div class="btn btn-primary">
-                <small>commented by <h3>{{ac.author}}</h3></small>
-                <p> <small> comment</small> : {{ac.text}}</p>
-            </div>
+                <div class="btn btn-primary">
+                    <small>commented by <h3>{{ac.author}}</h3></small>
+                    <p> <small> comment</small> : {{ac.text}}</p>
+                </div>
             {% empty %}
-            <p class='btn btn-outline-danger'>No commets yet</p>
+                <p class='btn btn-outline-danger'>No commets yet</p>
             {% endfor %}
-        <br><br>
+            <br><br>
     </div>
     <div class="container">
         <form action="" method="POST">
@@ -34,6 +34,7 @@ Home
         {{comment|crispy}}
         <input type="submit" class='btn btn-info' value="Share comment">
         </form>
+
     </div>
         <br><br>
 

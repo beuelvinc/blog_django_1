@@ -51,6 +51,12 @@ Home
     <section class="ftco-section ftco-no-pt">
         <div class="container">
             <div class="row">
+            <div class="sidebar-box p-4   fadeInup">
+                <form class="form-inline my-2 my-lg-0 " method="get">
+                    <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search Article" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-md-12 heading-section   fadeInup">
@@ -69,7 +75,7 @@ Home
 
                         <div class="col-md-4   fadeInup">
                             <div class="blog-entry">
-                                <a href="{% url 'detail_page' obj.id %}" class="img-2"><img src="{% static 'images/blog-1.jpg' %}" class="img-fluid" alt="Colorlib Template"></a>
+                                <a href="{% url 'detail_page' obj.id %}" class="img-2"><img src="{{obj.image.url}}" class="img-fluid" alt="Colorlib Template"></a>
                                 <div class="text pt-3">
                                     <p class="meta d-flex"><span class="pr-3">{{obj.title}}</span><span class="ml-auto pl-3">{{obj.date}}</span>
                                     </p>
@@ -120,12 +126,6 @@ Home
                                 <p>Hi! My name is <strong>Cathy Deon</strong>, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
                                     a large language ocean.</p>
                             </div>
-                        </div>
-                        <div class="sidebar-box p-4   fadeInup">
-                           <form class="form-inline my-2 my-lg-0 " method="get">
-                                <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search Article" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form>
                         </div>
                     </div>
                 </div>

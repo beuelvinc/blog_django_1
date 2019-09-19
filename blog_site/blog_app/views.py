@@ -8,8 +8,9 @@ from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.core.mail import send_mail
-from .forms import ContactForm
 from .forms import CaptchaForm
+from django.views.generic.detail import SingleObjectMixin
+from .forms import ContactForm
 class home_page(ListView):
     model=Post
     template_name="home.html"
@@ -34,12 +35,14 @@ def about_page(request):
 
 class CreatePage(LoginRequiredMixin,CreateView):
     model=Post
-    fields = ("title","content")
+    fields = ("title","content","image")
     success_url="/"
+    template_name="create.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+  
 # class detail_page(DetailView):
 #     model=Post
 #     context_object_name="object"
@@ -126,3 +129,6 @@ def contact_page(request):
             return redirect('success')
 
     return render(request,"contact.html",{"form":form,"captch":CaptchaForm()})
+
+
+
